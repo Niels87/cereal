@@ -20,12 +20,17 @@ class CerealCLI():
         
         while True:
             
-            req_type = prompt("\ninput request type\n -> ")
+            req_type = prompt("\ninput request type (get or post)\n to exit, type quit or exit\n -> ")
             
                         
             match req_type:
                 case "get":
                     params = prompt("\ninput optional search parameters as: field=value\n -> ")
+                    
+                    match params:
+                        case "exit" | "quit":
+                            break
+                    
                     key = params.split("=", maxsplit=1)[0].strip()
                     val = params.split("=", maxsplit=1)[1].strip()
                     if db_config.keys().__contains__(key):
